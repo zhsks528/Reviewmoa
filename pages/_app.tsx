@@ -1,30 +1,40 @@
-import App from "next/app";
 import Head from "next/head";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
+import Pusher from "pusher-js";
+import type { AppProps } from "next/app";
 
-export default class RootApp extends App {
-  componentDidMount() {
+function MyApp({ Component, pageProps }: AppProps) {
+  useEffect(() => {
     // Remove the server-side injected CSS.
     const jssStyles = document.querySelector("#jss-server-side");
     if (jssStyles) {
       jssStyles.parentNode.removeChild(jssStyles);
     }
-  }
 
-  render() {
-    const { Component, ...other } = this.props;
+    Pusher.logToConsole = true;
 
-    return (
-      <Fragment>
-        <Head>
-          <title>Review mo</title>
-        </Head>
-        <div>
-          <main>
-            <Component {...other} />
-          </main>
-        </div>
-      </Fragment>
-    );
-  }
+    var pusher = new Pusher("1ce835c5a0bc771a63a7", {
+      cluster: "ap3",
+    });
+
+    var channel = pusher.subscribe("review");
+    channel.bind("inserted", (data) => {
+      alert(JSON.stringify(data));
+    });
+  }, []);
+
+  return (
+    <Fragment>
+      <Head>
+        <title>Review mo</title>
+      </Head>
+      <div>
+        <main>
+          <Component {...pageProps} />
+        </main>
+      </div>
+    </Fragment>
+  );
 }
+
+export default MyApp;
