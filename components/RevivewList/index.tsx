@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-// import fetch from "node-fetch";
 
 import { Avatar } from "@material-ui/core";
 
@@ -27,18 +26,29 @@ const ReviewTitle = styled.div`
   margin-bottom: 8px;
 `;
 
-type ReviewType = {
-  name: string;
+type ReviewProps = {
+  title: string;
   content: string;
   gender: string;
   age: string;
+};
+
+type SurveyProps = {
+  tech: string;
+  price: string;
+  brand: string;
+};
+
+type ReviewListType = {
+  reviewState: ReviewProps;
+  survetState: SurveyProps;
   createdAt: string;
   updatedAt: string;
   id: string;
 };
 
 interface Props {
-  data: ReviewType[];
+  data: any;
 }
 
 const ReviewList: React.FC<Props> = ({ data }) => {
@@ -52,8 +62,8 @@ const ReviewList: React.FC<Props> = ({ data }) => {
           <ReviewContainer>
             <Avatar />
             <ReviewInfo className="sidebarChat__info">
-              <ReviewTitle>{item.name}</ReviewTitle>
-              <div>{item.content}</div>
+              <ReviewTitle>{item.reviewState.title}</ReviewTitle>
+              <div>{item.reviewState.content}</div>
             </ReviewInfo>
           </ReviewContainer>
         </Link>

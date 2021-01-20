@@ -48,13 +48,11 @@ db.once("open", () => {
   const changeStream = reviewCollection.watch();
 
   changeStream.on("change", (change) => {
-    console.log(change);
-
     if (change.operationType === "insert") {
-      const reviewDetails = change.fullDocument;
+      const { reviewState, surveyState } = change.fullDocument;
       pusher.trigger("review", "inserted", {
-        name: reviewDetails.name,
-        content: reviewDetails.content,
+        reviewState: reviewState,
+        surveyState: surveyState,
       });
     } else {
       console.log("pusher trigger 오류");

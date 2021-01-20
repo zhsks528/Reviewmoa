@@ -17,10 +17,8 @@ exports.reviewPost = (req, res) => {
 
   console.log(data);
   const reviewModel = new Review();
-  reviewModel.name = data.name;
-  reviewModel.content = data.content;
-  reviewModel.gender = data.gender;
-  reviewModel.age = data.age;
+  reviewModel.reviewState = data.reviewState;
+  reviewModel.surveyState = data.surveyState;
 
   reviewModel
     .save()
