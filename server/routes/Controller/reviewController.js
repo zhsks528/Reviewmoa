@@ -81,7 +81,7 @@ exports.reviewUpdate = (req, res) => {
 };
 
 exports.reviewGender = (req, res) => {
-  Review.find({}, { gender: 1 }, (err, data) => {
+  Review.find({}, { "reviewState.gender": 1 }, (err, data) => {
     if (err) {
       res.status(500).json("error");
     } else {
@@ -91,7 +91,7 @@ exports.reviewGender = (req, res) => {
 };
 
 exports.reviewAge = (req, res) => {
-  Review.find({}, { age: 1 }, (err, data) => {
+  Review.find({}, { "reviewState.age": 1 }, (err, data) => {
     if (err) {
       res.status(500).json("error");
     } else {

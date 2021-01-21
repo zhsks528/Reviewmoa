@@ -7,7 +7,6 @@ const CardContainer = styled.div`
   margin: 8px 12px;
   padding: 4px 8px;
   flex: 1 0 18%;
-  height: 120px;
   min-width: 250px;
   position: relative;
   background: rgb(29, 38, 54);
@@ -64,7 +63,7 @@ const ReviewCount: React.FC<Props> = ({ data }) => {
         <IconContainer>
           <FontAwesomeIcon icon={faUsers} />
         </IconContainer>
-        <Title>Count</Title>
+        <Title>리뷰수</Title>
       </Header>
       <Body>
         <Content>

@@ -1,10 +1,16 @@
-import { Fragment, useState, useEffect } from "react";
+import { Fragment } from "react";
 import { GetStaticProps } from "next";
 import axios from "axios";
 import ReviewList from "components/RevivewList";
 import ReviewCount from "components/ReviewCount";
 import GenderChart from "components/GenderChart";
 import AgeChart from "components/AgeChart";
+
+import dynamic from "next/dynamic";
+
+const SpiderChart = dynamic(() => import("components/SpiderChart"), {
+  ssr: false,
+});
 
 type ReviewType = {
   name: string;
@@ -38,61 +44,13 @@ interface Props {
 }
 
 const Index: React.FC<Props> = ({ reviewData, genderData, ageData }) => {
-  const [count, setCount] = useState<Number>(0);
-  const [genderState, setGenderState] = useState<GenderState>({
-    male: 0,
-    female: 0,
-  });
-  const [ages, setAges] = useState<any>([]);
-
-  useEffect(() => {
-    setCount(reviewData.length);
-  }, [count]);
-
-  useEffect(() => {
-    let male_count = 0;
-    let female_count = 0;
-
-    for (let idx in genderData) {
-      if (genderData[idx].gender === "남성") {
-        male_count += 1;
-      } else {
-        female_count += 1;
-      }
-    }
-
-    setGenderState({
-      male: male_count,
-      female: female_count,
-    });
-  }, []);
-
-  useEffect(() => {
-    let agecounts = [0, 0, 0, 0, 0];
-
-    ageData.map((item) => {
-      if (item.age < 20) {
-        agecounts[0] += 1;
-      } else if (item.age >= 20 && item.age < 30) {
-        agecounts[1] += 1;
-      } else if (item.age >= 30 && item.age < 40) {
-        agecounts[2] += 1;
-      } else if (item.age >= 40 && item.age < 50) {
-        agecounts[3] += 1;
-      } else {
-        agecounts[4] += 1;
-      }
-    });
-
-    setAges(agecounts);
-  }, []);
-
   return (
     <Fragment>
       <ReviewList data={reviewData} />
-      <ReviewCount reviewCount={count} />
-      <GenderChart data={genderState} />
-      <AgeChart ages={ages} />
+      <ReviewCount data={reviewData} />
+      <GenderChart data={genderData} />
+      <AgeChart ages={ageData} />
+      <SpiderChart data={reviewData} />
     </Fragment>
   );
 };
