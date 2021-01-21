@@ -20,6 +20,9 @@ const detail = ({ reviewData }) => {
       <Link href="/review">
         <button>돌아가기</button>
       </Link>
+      <Link href="/review/delete">
+        <button>삭제하기</button>
+      </Link>
     </div>
   );
 };
