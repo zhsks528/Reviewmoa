@@ -1,26 +1,36 @@
-import Link from "next/link";
 import axios from "axios";
-
-const Button = ({ onClick }) => (
-  <button onClick={onClick}>Get Data From Server</button>
-);
+import { useState } from "react";
+import { useRouter, NextRouter } from "next/router";
 
 const index = () => {
+  const [query, setQuery] = useState("");
+  const router: NextRouter = useRouter();
+
   const onClick = () => {
     axios
-      .get("http://localhost:8000/review/6004622941424853fc16ad37")
+      .get(`http://localhost:8000/search/${query}`)
       .then((res) => {
-        console.log(res);
-      });
+        const { status } = res;
+
+        if (status === 200) {
+          router.push({
+            pathname: `/product/${query}`,
+          });
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
+  const handleChange = (event) => {
+    const { value } = event.target;
+
+    setQuery(value);
   };
 
   return (
     <div>
-      <h1>hello world</h1>
-      <Link href="/hello">
-        <a title="hello">Hello Page</a>
-      </Link>
-      <Button onClick={onClick} />
+      <input type="text" onChange={handleChange} />
+      <button onClick={onClick}>검색</button>
     </div>
   );
 };
