@@ -1,41 +1,56 @@
 // Model
-const Review = require("../../model/review");
+const Review = require("../model/review");
+const Product = require("../model/products");
 
 // Controller
-exports.reviewGet = (req, res) => {
-  Review.find((err, data) => {
+exports.reviewAll = (req, res) => {
+  Product.find((err, data) => {
     if (err) {
-      res.status(500).send(error);
+      res.status(500).send(errpr);
     } else {
       res.status(200).send(data);
     }
   });
 };
 
-exports.reviewPost = (req, res) => {
-  const { data } = req.body;
+exports.reviewGet = (req, res) => {
+  const products = req.params.name;
+  Product.find(
+    { name: products },
+    null,
+    { sort: { createdAt: -1 } },
+    (err, data) => {
+      if (err) {
+        res.status(500).send(error);
+      } else {
+        res.status(200).send(data);
+      }
+    }
+  );
+};
 
-  console.log(data);
-  const reviewModel = new Review();
-  reviewModel.reviewState = data.reviewState;
-  reviewModel.surveyState = data.surveyState;
+exports.reviewPost = async (req, res) => {
+  const productName = req.params.name;
+
+  console.log(req.body);
+  const reviewModel = new Review({
+    reviewState: req.body.reviewState,
+    surveyState: req.body.surveyState,
+  });
 
   reviewModel
     .save()
     .then((newReview) => {
-      console.log("리뷰가 생겼습니다.");
-      res.status(201).json({
-        message: "리뷰 생성 완료",
-        data: {
-          review: newReview,
-        },
+      Product.findOne({ name: productName }, (err, product) => {
+        if (product) {
+          product.reviews.push(newReview);
+          product.save();
+          res.status(201).json(product);
+        }
       });
     })
-    .catch((err) => {
-      console.log(err);
-      res.status(500).json({
-        message: errr,
-      });
+    .catch((error) => {
+      res.status(500).json(error);
     });
 };
 
@@ -56,11 +71,14 @@ exports.reviewDetail = (req, res) => {
 
 exports.reviewDelete = (req, res) => {
   Review.findByIdAndDelete(req.params.id, (err, data) => {
+    console.log(data);
     if (err) {
       return res.status(500).send("리뷰를 삭제하지 못했습니다.");
     }
 
-    res.status(200).send(`"Review 제목 : ${data.name}가 삭제되었습니다`);
+    res
+      .status(200)
+      .send(`"Review 제목 : ${data.reviewState.title}가 삭제되었습니다`);
   });
 };
 

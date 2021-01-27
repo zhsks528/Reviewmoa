@@ -1,28 +1,32 @@
 const router = require("express").Router();
-const main = require("./Controller/mainController");
-const review = require("./Controller/reviewController");
+const product = require("../controllers/productController");
+const review = require("../controllers/reviewController");
 
-router.get("/", main.mainView);
+// 검색 API
+router.get("/search", product.searchGet);
+router.get("/search/:name", product.searchDetail);
 
-// Reivew 생성
-router.post("/review", review.reviewPost);
+// 제품 API
+router.route("/products").get(product.productAll).post(product.productPost);
+router
+  .route("/products/:name")
+  .get(product.productDetail)
+  .put(product.productUpdate)
+  .delete(product.prodcutDelete);
 
-// Reivew 전체 조회
-router.get("/review", review.reviewGet);
+// 리뷰 API
+router.route("/review").get(review.reviewAll);
+router.route("/review/:name").get(review.reviewGet).post(review.reviewPost);
+router
+  .route("/review/:name/:id")
+  .get(review.reviewDetail)
+  .put(review.reviewUpdate)
+  .delete(review.reviewDelete);
 
 // Review 성별 데이터 조회
-router.get("/review/gender", review.reviewGender);
+// router.get("/review/gender", review.reviewGender);
 
 // Review 연령별 데이터 조회
-router.get("/review/age", review.reviewAge);
-
-// Review 개별 조회
-router.get("/review/:id", review.reviewDetail);
-
-// Review 개별 삭제
-router.delete("/review/:id", review.reviewDelete);
-
-// Review 개별 수정
-router.put("/review/:id", review.reviewUpdate);
+// router.get("/review/age", review.reviewAge);
 
 module.exports = router;
