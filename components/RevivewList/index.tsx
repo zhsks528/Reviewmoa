@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
-
 import { Avatar } from "@material-ui/core";
 
 const Wrapper = styled.div`
@@ -148,6 +147,7 @@ type ReviewListType = {
 
 interface Props {
   data: any;
+  name: string;
 }
 
 const Line = styled.div`
@@ -157,7 +157,7 @@ const Line = styled.div`
   margin-top: 15px;
 `;
 
-const ReviewList: React.FC<Props> = ({ data }) => {
+const ReviewList: React.FC<Props> = ({ data, name }) => {
   const getFormatDate = (date) => {
     const data = new Date(date);
     const year = data.getFullYear();
@@ -187,7 +187,7 @@ const ReviewList: React.FC<Props> = ({ data }) => {
               {data.map((item) => (
                 <Link
                   key={item.id}
-                  href={`/review/${encodeURIComponent(item.id)}`}
+                  href={`/review/${name}/${encodeURIComponent(item._id)}`}
                 >
                   <ReviewCard>
                     <CardContainer>

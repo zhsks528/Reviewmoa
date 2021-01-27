@@ -12,7 +12,6 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { useState, useEffect } from "react";
 
 const CardContainer = styled.div`
   border-radius: 4px;

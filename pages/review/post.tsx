@@ -1,9 +1,10 @@
 import { useState, Fragment } from "react";
 import { useRouter, NextRouter } from "next/router";
+import { NextPage } from "next";
 import Link from "next/link";
 import axios from "axios";
 
-const register = () => {
+const register: NextPage = () => {
   const [reviewState, setReviewState] = useState({
     title: "",
     content: "",

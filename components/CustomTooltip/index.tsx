@@ -21,7 +21,6 @@ interface Props {
 }
 
 const CustomTooltip: React.FC<Props> = ({ title, active, payload, label }) => {
-  console.log(payload);
   if (active && payload) {
     return (
       <TooltipCustom>
