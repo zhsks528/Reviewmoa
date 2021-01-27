@@ -1,11 +1,16 @@
-import { GetStaticProps, GetStaticPaths } from "next";
+import { GetStaticProps, GetStaticPaths, NextPage } from "next";
 import Link from "next/link";
 import axios from "axios";
 
-const detail = ({ reviewData }) => {
+interface Props {
+  reviewData: any;
+}
+
+const detail: NextPage<Props> = ({ reviewData }) => {
   return (
     <div>
-      <div>
+      <div>HI2</div>
+      {/* <div>
         <div>{reviewData.reviewState.title}</div>
         <div>{reviewData.reviewState.gender}</div>
         <div>{reviewData.reviewState.age}</div>
@@ -22,7 +27,7 @@ const detail = ({ reviewData }) => {
       </Link>
       <Link href="/review/delete">
         <button>삭제하기</button>
-      </Link>
+      </Link> */}
     </div>
   );
 };
@@ -32,17 +37,21 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const reviews = await res.data;
 
   let paths = reviews.map((review) => ({
-    params: { id: review.id },
+    params: { id: review.id, name: review.name },
   }));
+
+  console.log(paths);
   return { paths, fallback: false };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const reviewRes = await axios.get(
-    `http://localhost:8000/review/${params.id}`
-  );
+  console.log(params);
+  // const reviewRes = await axios.get(
+  //   `http://localhost:8000/review/${params.id}`
+  // );
 
-  const reviewData = await reviewRes.data;
+  const reviewData = "test";
+  // const reviewData = await reviewRes.data;
 
   return {
     props: { reviewData },
