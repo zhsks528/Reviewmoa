@@ -15,6 +15,7 @@ const reviewSchema = new Schema(
       price: { type: Number },
       brand: { type: Number },
     },
+    product: { type: Schema.Types.ObjectId, ref: "product" },
   },
   {
     timestamps: true,
