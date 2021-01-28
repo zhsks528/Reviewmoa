@@ -23,7 +23,6 @@ interface Props {
 }
 
 const Index: NextPage<Props> = ({ reviews, name }) => {
-  console.log(reviews);
   return (
     <Fragment>
       <ReviewList data={reviews} name={name} />
