@@ -2,6 +2,7 @@ import Head from "next/head";
 import { Fragment, useEffect } from "react";
 import Pusher from "pusher-js";
 import type { AppProps } from "next/app";
+import GlobalStyle from "./globalStyles";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -25,8 +26,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <Fragment>
+      <GlobalStyle />
       <Head>
-        <title>Review mo</title>
+        <title>REVIEW MOA</title>
       </Head>
       <div>
         <main>
