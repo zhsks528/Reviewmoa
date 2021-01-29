@@ -83,7 +83,7 @@ const index = () => {
   const [query, setQuery] = useState("");
   const router: NextRouter = useRouter();
 
-  const onClick = () => {
+  const handleSearch = () => {
     axios
       .get(`http://localhost:8000/search/${query}`)
       .then((res) => {
@@ -104,28 +104,33 @@ const index = () => {
     setQuery(value);
   };
 
+  const handleDelete = () => {
+    setQuery("");
+  };
+
   return (
     <Wrapper>
       <TitleContainer>
         <h2>REVIEW MOA</h2>
       </TitleContainer>
       <SubContainer>
-        <div>상품에 대한 리뷰를 한 곳에서 훑어보자</div>
+        <div>상품에 대한 리뷰를 한 곳에서 보자</div>
       </SubContainer>
       <SearchContainer>
         <SearchLeft>
           <SearchInput
             type="text"
+            value={query}
             onChange={handleChange}
             placeholder="상품이름을 입력해주세요."
           />
           <SearchDelBtn>
-            <FontAwesomeIcon icon={faTimes} />
+            <FontAwesomeIcon icon={faTimes} onClick={handleDelete} />
           </SearchDelBtn>
         </SearchLeft>
 
         <SearchRight>
-          <FontAwesomeIcon icon={faSearch} onClick={onClick} />
+          <FontAwesomeIcon icon={faSearch} onClick={handleSearch} />
         </SearchRight>
       </SearchContainer>
     </Wrapper>
