@@ -18,16 +18,19 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     border: 0;
     font-size: 100%;
-    // font: inherit;
     vertical-align: baseline;
   }
   
+  *{
+    box-sizing : border-box;
+  }
   html{
     height : 100%;
   }
 
   body {
     height : 100%;
+    background : #111828;
   }
 
   div#__next,
