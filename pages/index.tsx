@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState } from "react";
 import { useRouter, NextRouter } from "next/router";
+import axios from "axios";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -83,7 +83,7 @@ const index = () => {
   const [query, setQuery] = useState("");
   const router: NextRouter = useRouter();
 
-  const handleSearch = () => {
+  const handleSearch = (): void => {
     axios
       .get(`http://localhost:8000/search/${query}`)
       .then((res) => {
@@ -98,13 +98,19 @@ const index = () => {
       .catch((err) => console.log(err));
   };
 
-  const handleChange = (event) => {
+  const handleEnter = (event: React.KeyboardEvent<HTMLDivElement>): void => {
+    if (event.key === "Enter") {
+      handleSearch();
+    }
+  };
+
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { value } = event.target;
 
     setQuery(value);
   };
 
-  const handleDelete = () => {
+  const handleDelete = (): void => {
     setQuery("");
   };
 
@@ -122,6 +128,7 @@ const index = () => {
             type="text"
             value={query}
             onChange={handleChange}
+            onKeyDown={handleEnter}
             placeholder="상품이름을 입력해주세요."
           />
           <SearchDelBtn>
