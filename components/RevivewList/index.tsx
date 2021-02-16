@@ -186,7 +186,7 @@ const ReviewList: React.FC<Props> = ({ data, name }) => {
             <ReviewGrid>
               {data.map((item) => (
                 <Link
-                  key={item.id}
+                  key={item._id}
                   href={`/review/${name}/${encodeURIComponent(item._id)}`}
                 >
                   <ReviewCard>
