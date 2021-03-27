@@ -1,42 +1,8 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReviewLayout from "components/ReviewLayout";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import Rating from "@material-ui/lab/Rating";
 import { withStyles } from "@material-ui/core/styles";
-
-const CardContainer = styled.div`
-  border-radius: 4px;
-  margin: 8px 12px;
-  padding: 4px 8px;
-  flex: 1 0 18%;
-  min-width: 250px;
-  position: relative;
-  background: rgb(29, 38, 54);
-`;
-
-const Header = styled.div`
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  align-content: center;
-  padding: 6px 0px 6px 3px;
-`;
-
-const IconContainer = styled.div`
-  width: 20px;
-  height: 15px;
-  display: flex;
-  place-content: center;
-  align-items: center;
-  color: rgb(17, 236, 229);
-`;
-
-const Title = styled.h2`
-  margin-left: 7px;
-  font-size: 15px;
-  color: rgb(17, 236, 229);
-  line-height: 1em;
-`;
 
 const Body = styled.div`
   margin-top: 2px;
@@ -70,13 +36,7 @@ const RatingChart: React.FC<Props> = ({ data }) => {
   const star = objAvg / data.length;
 
   return (
-    <CardContainer>
-      <Header>
-        <IconContainer>
-          <FontAwesomeIcon icon={faStar} />
-        </IconContainer>
-        <Title>총점</Title>
-      </Header>
+    <ReviewLayout title="총점" icon={faStar}>
       <Body>
         <Content>
           <StyledRating
@@ -87,7 +47,7 @@ const RatingChart: React.FC<Props> = ({ data }) => {
           />
         </Content>
       </Body>
-    </CardContainer>
+    </ReviewLayout>
   );
 };
 

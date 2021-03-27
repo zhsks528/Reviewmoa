@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReviewLayout from "components/ReviewLayout";
 import { faVenusMars } from "@fortawesome/free-solid-svg-icons";
 import {
   PieChart,
@@ -11,40 +11,6 @@ import {
 } from "recharts";
 
 import CustomTooltip from "components/CustomTooltip";
-
-const CardContainer = styled.div`
-  border-radius: 4px;
-  margin: 8px 12px;
-  padding: 4px 8px;
-  flex: 1 0 18%;
-  min-width: 250px;
-  position: relative;
-  background: rgb(29, 38, 54);
-`;
-
-const Header = styled.div`
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  align-content: center;
-  padding: 6px 0px 6px 3px;
-`;
-
-const IconContainer = styled.div`
-  width: 20px;
-  height: 15px;
-  display: flex;
-  place-content: center;
-  align-items: center;
-  color: rgb(17, 236, 229);
-`;
-
-const Title = styled.h2`
-  margin-left: 7px;
-  font-size: 15px;
-  color: rgb(17, 236, 229);
-  line-height: 1em;
-`;
 
 const Body = styled.div`
   display: flex;
@@ -110,13 +76,7 @@ const GenderChart: React.FC<Props> = ({ data }) => {
   };
 
   return (
-    <CardContainer>
-      <Header>
-        <IconContainer>
-          <FontAwesomeIcon icon={faVenusMars} />
-        </IconContainer>
-        <Title>성별</Title>
-      </Header>
+    <ReviewLayout title="성별" icon={faVenusMars}>
       <Body>
         <ResponsiveContainer width="99%" height={300}>
           <PieChart margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
@@ -149,7 +109,7 @@ const GenderChart: React.FC<Props> = ({ data }) => {
           </PieChart>
         </ResponsiveContainer>
       </Body>
-    </CardContainer>
+    </ReviewLayout>
   );
 };
 

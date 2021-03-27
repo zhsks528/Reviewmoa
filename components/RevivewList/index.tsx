@@ -2,37 +2,17 @@ import React from "react";
 import Link from "next/link";
 import styled from "styled-components";
 import { Avatar } from "@material-ui/core";
+import { formatDate } from "utils/formatDate";
+import ReviewLayout from "components/ReviewLayout";
+import { faUsers } from "@fortawesome/free-solid-svg-icons";
 
-const Wrapper = styled.div`
-  background-color: rgb(29, 38, 54);
-  margin: 8px 12px 24px;
-  display: flex;
-  flex-direction: column;
-  border-radius: 4px;
-`;
-
-const Header = styled.div`
-  border-top-left-radius: 4px;
-  border-top-right-radius: 4px;
-  padding: 4px 8px;
-  background-color: rgb(36, 54, 78);
-  background-image: linear-gradient(
-    to right,
-    rgba(13, 230, 255, 0.15) 0%,
-    rgba(201, 189, 174, 0) 25%
-  );
-  display: flex;
-  justify-content: space-between;
-`;
-
-const Title = styled.h2`
-  font-size: 20px;
-  font-weight: 200;
-  flex-grow: 2;
-  margin: 0;
-  padding: 0;
-  color: #92abcf;
-`;
+// const Wrapper = styled.div`
+//   background-color: rgb(29, 38, 54);
+//   margin: 8px 12px 24px;
+//   display: flex;
+//   flex-direction: column;
+//   border-radius: 4px;
+// `;
 
 const Body = styled.div`
   padding: 16px;
@@ -124,6 +104,7 @@ const ReviewContent = styled.div`
   color: #92abcf;
   white-space: pre-wrap;
 `;
+
 type ReviewProps = {
   title: string;
   content: string;
@@ -157,69 +138,84 @@ const Line = styled.div`
   margin-top: 15px;
 `;
 
-const ReviewList: React.FC<Props> = ({ data, name }) => {
-  const getFormatDate = (date) => {
-    const data = new Date(date);
-    const year = data.getFullYear();
-
-    let month = 1 + data.getMonth();
-    const mm = month >= 10 ? month : "0" + month;
-
-    let day = data.getDate();
-    const dd = day >= 10 ? day : "0" + day;
-
-    const result = `${year}-${mm}-${dd}`;
-    return result;
-  };
-
+const ReviewItem = ({ review, name }) => {
   return (
-    <div>
-      <Link href="review/post">
+    <Link
+      key={review._id}
+      href={`/review/${name}/${encodeURIComponent(review._id)}`}
+    >
+      <CardContainer>
+        <CardLeft>
+          <UserProfile>
+            <Avatar />
+          </UserProfile>
+          <ReviewInfo>
+            <User>이름</User>
+            <Day>{formatDate(review.createdAt)}</Day>
+            <EtcContainer>
+              <Etc>{review.reviewState.age}</Etc>
+              <Etc>{review.reviewState.gender}</Etc>
+            </EtcContainer>
+          </ReviewInfo>
+        </CardLeft>
+        <CardRight>
+          <ReviewTitle>{review.reviewState.title}</ReviewTitle>
+          <Line />
+          <ReviewContent>{review.reviewState.content}</ReviewContent>
+        </CardRight>
+      </CardContainer>
+    </Link>
+  );
+};
+
+const Section = styled.section``;
+
+const ReviewCardWrapper = styled.div`
+  width: 100%;
+  margin-bottom: 30px;
+  display: inline-block;
+`;
+
+const ReviewCardTest = styled.div`
+  width: 100%;
+  background: rgb(11, 18, 30);
+  border: 1px solid rgb(33, 50, 78);
+  padding: 16px;
+  border-radius: 4px;
+`;
+
+const ReveiewCardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  min-width: 360px;
+  border-radius: 4px;
+  z-index: 9;
+  cursor: pointer;
+
+  ${ReviewCardTest}:hover {
+    border: 1px solid rgb(90, 128, 191);
+    background-color: rgb(17, 28, 46);
+  }
+`;
+
+const Wrapper = styled.div`
+  background: rgb(11, 18, 30);
+  border: 1px solid rgb(33, 50, 78);
+`;
+
+const ReviewList: React.FC<Props> = ({ data, name }) => {
+  return (
+    <ReviewLayout title="리뷰" icon={faUsers}>
+      {/* <Link href="review/post">
         <button>글 작성</button>
-      </Link>
-      <Wrapper>
-        <Header>
-          <Title>User Reviews</Title>
-        </Header>
-        <Body>
-          <ReviewContainer>
-            <ReviewGrid>
-              {data.map((item) => (
-                <Link
-                  key={item._id}
-                  href={`/review/${name}/${encodeURIComponent(item._id)}`}
-                >
-                  <ReviewCard>
-                    <CardContainer>
-                      <CardLeft>
-                        <UserProfile>
-                          <Avatar />
-                        </UserProfile>
-                        <ReviewInfo>
-                          <User>이름</User>
-                          <Day>{getFormatDate(item.createdAt)}</Day>
-                          <EtcContainer>
-                            <Etc>{item.reviewState.age}</Etc>
-                            <Etc>{item.reviewState.gender}</Etc>
-                          </EtcContainer>
-                        </ReviewInfo>
-                      </CardLeft>
-                      <CardRight>
-                        <ReviewTitle>{item.reviewState.title}</ReviewTitle>
-                        <Line />
-                        <ReviewContent>
-                          {item.reviewState.content}
-                        </ReviewContent>
-                      </CardRight>
-                    </CardContainer>
-                  </ReviewCard>
-                </Link>
-              ))}
-            </ReviewGrid>
-          </ReviewContainer>
-        </Body>
-      </Wrapper>
-    </div>
+      </Link> */}
+      <ReviewGrid>
+        {data.map((item) => (
+          <ReviewItem review={item} name={name} />
+        ))}
+      </ReviewGrid>
+    </ReviewLayout>
   );
 };
 
