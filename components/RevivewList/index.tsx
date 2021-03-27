@@ -6,24 +6,6 @@ import { formatDate } from "utils/formatDate";
 import ReviewLayout from "components/ReviewLayout";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 
-// const Wrapper = styled.div`
-//   background-color: rgb(29, 38, 54);
-//   margin: 8px 12px 24px;
-//   display: flex;
-//   flex-direction: column;
-//   border-radius: 4px;
-// `;
-
-const Body = styled.div`
-  padding: 16px;
-  display: grid;
-`;
-
-const ReviewContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
 const ReviewCard = styled.div`
   display: flex;
   padding: 10px;
@@ -35,21 +17,19 @@ const ReviewCard = styled.div`
 `;
 
 const ReviewGrid = styled.div`
-  display: flex;
-  flex-flow: column wrap;
-
-  ${ReviewCard}:nth-child(even) {
-    background: rgb(36, 54, 78);
-  }
-
-  ${ReviewCard}:nth-child(even):hover {
-    background: rgba(13, 230, 255, 0.15);
-  }
+  height: calc(100% - 50px);
+  grid-column: 3 / 5;
+  grid-row: 2 / 4;
 `;
 
-const CardContainer = styled.div`
+const CardContainer = styled.article`
   display: flex;
   width: 100%;
+  margin-bottom: 20px;
+
+  &:hover {
+    background-color: rgb(17, 28, 46);
+  }
 `;
 
 const CardLeft = styled.div`
@@ -96,126 +76,132 @@ const CardRight = styled.div`
 const ReviewTitle = styled.div`
   font-size: 1em;
   font-weight: bold;
-  color: rgb(17, 236, 229);
   margin-bottom: 8px;
 `;
 
 const ReviewContent = styled.div`
   color: #92abcf;
   white-space: pre-wrap;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+
+  @media (max-width: 768px) {
+    -webkit-line-clamp: 3;
+  } ;
 `;
 
-type ReviewProps = {
-  title: string;
-  content: string;
-  gender: string;
-  age: string;
-};
+const Wrapper = styled.section`
+  grid-column: 3 / 5;
+  grid-row: 2 / 4;
 
-type SurveyProps = {
-  tech: string;
-  price: string;
-  brand: string;
-};
+  @media (max-width: 768px) {
+    grid-column: 1 / 3;
+    grid-row: auto;
+  }
 
-type ReviewListType = {
-  reviewState: ReviewProps;
-  survetState: SurveyProps;
-  createdAt: string;
-  updatedAt: string;
-  id: string;
-};
+  @media (max-width: 480px) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+`;
 
+const SurveyContainer = styled.div`
+  display: flex;
+  margin-bottom: 10px;
+`;
+
+const SurveyBox = styled.div`
+  background: rgb(17, 28, 46);
+  border: 1px solid rgb(90, 128, 191);
+  border-radius: 10px;
+  padding: 3px 8px;
+  margin-right: 10px;
+  font-size: 13px;
+  color: rgb(17, 236, 229);
+`;
+
+const ReviewContainer = styled.div`
+  height: 100%;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #3c4f6e;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #3c4f6e;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #273854;
+  }
+`;
 interface Props {
   data: any;
   name: string;
 }
 
-const Line = styled.div`
-  border-top: 1px solid rgb(73, 84, 103);
-  width: 100%;
-  height: 1px;
-  margin-top: 15px;
-`;
-
-const ReviewItem = ({ review, name }) => {
+const CounterBtn = ({ survey }) => {
   return (
-    <Link
-      key={review._id}
-      href={`/review/${name}/${encodeURIComponent(review._id)}`}
-    >
-      <CardContainer>
-        <CardLeft>
-          <UserProfile>
-            <Avatar />
-          </UserProfile>
-          <ReviewInfo>
-            <User>이름</User>
-            <Day>{formatDate(review.createdAt)}</Day>
-            <EtcContainer>
-              <Etc>{review.reviewState.age}</Etc>
-              <Etc>{review.reviewState.gender}</Etc>
-            </EtcContainer>
-          </ReviewInfo>
-        </CardLeft>
-        <CardRight>
-          <ReviewTitle>{review.reviewState.title}</ReviewTitle>
-          <Line />
-          <ReviewContent>{review.reviewState.content}</ReviewContent>
-        </CardRight>
-      </CardContainer>
-    </Link>
+    <SurveyContainer>
+      <SurveyBox>기술 {survey.tech}</SurveyBox>
+      <SurveyBox>가격 {survey.price}</SurveyBox>
+      <SurveyBox>브랜드 {survey.brand}</SurveyBox>
+    </SurveyContainer>
   );
 };
 
-const Section = styled.section``;
-
-const ReviewCardWrapper = styled.div`
-  width: 100%;
-  margin-bottom: 30px;
-  display: inline-block;
-`;
-
-const ReviewCardTest = styled.div`
-  width: 100%;
-  background: rgb(11, 18, 30);
-  border: 1px solid rgb(33, 50, 78);
-  padding: 16px;
-  border-radius: 4px;
-`;
-
-const ReveiewCardContainer = styled.div`
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  min-width: 360px;
-  border-radius: 4px;
-  z-index: 9;
-  cursor: pointer;
-
-  ${ReviewCardTest}:hover {
-    border: 1px solid rgb(90, 128, 191);
-    background-color: rgb(17, 28, 46);
-  }
-`;
-
-const Wrapper = styled.div`
-  background: rgb(11, 18, 30);
-  border: 1px solid rgb(33, 50, 78);
-`;
+const ReviewItem = ({ review, name }) => {
+  return (
+    // <Link
+    //   key={review._id}
+    //   href={`/review/${name}/${encodeURIComponent(review._id)}`}
+    // >
+    <CardContainer>
+      <CardLeft>
+        <UserProfile>
+          <Avatar />
+        </UserProfile>
+        <ReviewInfo>
+          <User>이름</User>
+          <Day>{formatDate(review.createdAt)}</Day>
+          <EtcContainer>
+            <Etc>{review.reviewState.age}</Etc>
+            <Etc>{review.reviewState.gender}</Etc>
+          </EtcContainer>
+        </ReviewInfo>
+      </CardLeft>
+      <CardRight>
+        <ReviewTitle>{review.reviewState.title}</ReviewTitle>
+        <CounterBtn survey={review.surveyState} />
+        <ReviewContent>{review.reviewState.content}</ReviewContent>
+      </CardRight>
+    </CardContainer>
+    // </Link>
+  );
+};
 
 const ReviewList: React.FC<Props> = ({ data, name }) => {
   return (
-    <ReviewLayout title="리뷰" icon={faUsers}>
-      {/* <Link href="review/post">
+    <Wrapper>
+      <ReviewLayout title="리뷰" icon={faUsers}>
+        {/* <Link href="review/post">
         <button>글 작성</button>
       </Link> */}
-      <ReviewGrid>
-        {data.map((item) => (
-          <ReviewItem review={item} name={name} />
-        ))}
-      </ReviewGrid>
-    </ReviewLayout>
+        <ReviewGrid>
+          <ReviewContainer>
+            {data.map((item) => (
+              <ReviewItem review={item} name={name} />
+            ))}
+          </ReviewContainer>
+        </ReviewGrid>
+      </ReviewLayout>
+    </Wrapper>
   );
 };
 

@@ -1,10 +1,9 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styled from "styled-components";
 
-const CardContainer = styled.div`
-  margin: 8px 12px;
-  padding: 4px 8px;
-  flex: 1 0 18%;
+const CardContainer = styled.section`
+  height: 100%;
+  padding: 10px;
   min-width: 250px;
   position: relative;
   background: rgb(11, 18, 30);
@@ -12,12 +11,12 @@ const CardContainer = styled.div`
   border-radius: 4px;
 `;
 
-const Header = styled.div`
+const Header = styled.header`
   display: flex;
-  -webkit-box-align: center;
   align-items: center;
   align-content: center;
   padding: 6px 0px 6px 3px;
+  margin-bottom: 20px;
 `;
 
 const IconContainer = styled.div`

@@ -24,13 +24,15 @@ const GlobalStyle = createGlobalStyle`
   *{
     box-sizing : border-box;
   }
+
   html{
     height : 100%;
   }
 
   body {
-    height : 100%;
+    height: calc(100% - 70px);
     background : #111828;
+    color : white;
   }
 
   div#__next,
