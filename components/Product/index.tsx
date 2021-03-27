@@ -3,7 +3,10 @@ import ReviewLayout from "components/ReviewLayout";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
 
 const Body = styled.div`
-  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 75px);
 `;
 
 const Content = styled.div`

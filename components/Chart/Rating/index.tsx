@@ -5,7 +5,10 @@ import Rating from "@material-ui/lab/Rating";
 import { withStyles } from "@material-ui/core/styles";
 
 const Body = styled.div`
-  margin-top: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100% - 75px);
 `;
 
 const Content = styled.div`
