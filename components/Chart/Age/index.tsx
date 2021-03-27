@@ -142,7 +142,7 @@ const AgeChart: React.FC<Props> = ({ ages }) => {
               }}
               filterNull={false}
               content={<CustomTooltip />}
-              isAnimationActive={false}
+              isAnimationActive={true}
             />
             <Legend />
             <Bar
@@ -150,7 +150,7 @@ const AgeChart: React.FC<Props> = ({ ages }) => {
               fill="#11ECE5"
               legendType="circle"
               barSize={40}
-              isAnimationActive={false}
+              isAnimationActive={true}
             />
           </BarChart>
         </ResponsiveContainer>

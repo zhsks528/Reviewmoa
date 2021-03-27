@@ -89,7 +89,7 @@ const GenderChart: React.FC<Props> = ({ data }) => {
               stroke="#1d2636"
               strokeWidth={5}
               dataKey="value"
-              isAnimationActive={false}
+              isAnimationActive={true}
             >
               {dataset.map((entry, index) => (
                 <Cell
@@ -98,7 +98,7 @@ const GenderChart: React.FC<Props> = ({ data }) => {
                 />
               ))}
             </Pie>
-            <Tooltip isAnimationActive={false} />
+            <Tooltip isAnimationActive={true} />
             <Legend
               layout="horizontal"
               verticalAlign="bottom"

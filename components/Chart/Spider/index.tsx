@@ -94,7 +94,7 @@ const SpiderChart: React.FC<Props> = ({ data }) => {
               stroke="#11ece5"
               fill="#11ece5"
               fillOpacity={0.5}
-              isAnimationActive={false}
+              isAnimationActive={true}
             />
             <Tooltip
               isAnimationActive={false}
