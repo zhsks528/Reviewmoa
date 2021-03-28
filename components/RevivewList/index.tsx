@@ -196,7 +196,7 @@ const ReviewList: React.FC<Props> = ({ data, name }) => {
         <ReviewGrid>
           <ReviewContainer>
             {data.map((item) => (
-              <ReviewItem review={item} name={name} />
+              <ReviewItem review={item} name={name} key={item._id} />
             ))}
           </ReviewContainer>
         </ReviewGrid>

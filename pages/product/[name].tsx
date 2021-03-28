@@ -119,15 +119,12 @@ interface Props {
   products: any;
 }
 
-const Products = ({ product }) => {
+const ProductItem = ({ product }) => {
   return (
     <article>
       <ProductCardWrapper>
         <ProductCardContainer>
-          <Link
-            key={product.id}
-            href={`/review/${encodeURIComponent(product.name)}`}
-          >
+          <Link href={`/review/${encodeURIComponent(product.name)}`}>
             <ProductCard>
               <ProductCardInfo>
                 <div>
@@ -158,7 +155,7 @@ const Products = ({ product }) => {
   );
 };
 
-const Index: React.FC<Props> = ({ products }) => {
+const Products: React.FC<Props> = ({ products }) => {
   const router = useRouter();
   const productName = router.query.name;
   const count = products ? products.length : 0;
@@ -171,7 +168,9 @@ const Index: React.FC<Props> = ({ products }) => {
           검색 키워드 : {productName} ({count})
         </SearchQuery>
         {products && products.length !== 0 ? (
-          products.map((product) => <Products product={product} />)
+          products.map((product) => (
+            <ProductItem product={product} key={product.id} />
+          ))
         ) : (
           <div>검색결과가 없습니다. 다시 검색해주세요.</div>
         )}
@@ -209,4 +208,4 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 };
 
-export default Index;
+export default Products;
