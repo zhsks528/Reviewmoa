@@ -2,8 +2,8 @@
 
 > 리뷰모아 - 상품에 대한 통합적 리뷰를 제공하는 웹 애플리케이션
 
-![products](https://github.com/zhsks528/Reviewmoa/blob/master/resources/Products.PNG)
 ![main](https://github.com/zhsks528/Reviewmoa/blob/master/resources/main.PNG)
+![products](https://github.com/zhsks528/Reviewmoa/blob/master/resources/Products.PNG)
 
 ### 개발 필요성
 
@@ -19,11 +19,9 @@
 
 시각화를 이용하여 중요한 정보를 쉽고 빠르게 볼 수 있도록 도와준다.
 
-### 기술
+### 기술 스택
 
-Frontend : JavaScript, TypeScript, React, Next.js
-
-Backend : Node.js, Express, MongoDB
+![tech](https://github.com/zhsks528/Reviewmoa/blob/master/resources/tech.png)
 
 ### 진행상황
 
@@ -34,9 +32,6 @@ Backend : Node.js, Express, MongoDB
 - [x] 검색(메인) 페이지
 - [x] 제품 목록 조회 페이지
 - [x] 해당 제품 상세 페이지
-- [ ] 해당 제품 리뷰 작성 페이지
-- [ ] 해당 제품 리뷰 수정 페이지
-- [ ] 해당 제품 리뷰 삭제 페이지
 
 ##### 기능
 
@@ -44,21 +39,24 @@ Backend : Node.js, Express, MongoDB
 - [x] 성별 리뷰 수 기능 구현 (시각화 : 원형차트)
 - [x] 연령별 리뷰 수 기능 구현 (시각화 : 막대차트)
 - [x] 만족도별 기능 구현 (시각화 : 다각형차트)
-- [ ] 만족도에 따른 키워드 기능 구현 (시각화 : 막대차트)
 - [x] 상품의 총평가 기능 구현 (시각화 : 별점)
 - [X] 현재 제품의 가격 구현 (시각화 : 숫자)
 - [X] 현재 제품의 중고 변동 가격 구현 (시각화 : 라인차트)
-- [ ] 해당 제품 이미지 슬라이드 기능 구현
 - [x] 검색 기능 구현
+- [ ] 만족도에 따른 키워드 기능 구현 (시각화 : 막대차트)
+- [ ] 해당 제품 이미지 슬라이드 기능 구현
+- [ ] 해당 제품 리뷰 작성
+- [ ] 해당 제품 리뷰 수정 
+- [ ] 해당 제품 리뷰 삭제
 
 ##### 디자인
 
 - [x] 검색(메인) 페이지 디자인
 - [x] 제품 목록 조회 페이지 디자인
 - [x] 해당 제품 상세 페이지 디자인
-- [ ] 해당 제품 리뷰 작성 페이지 디자인
-- [ ] 해당 제품 리뷰 수정 페이지 디자인
-- [ ] 해당 제품 리뷰 삭제 페이지 디자인
+- [ ] 해당 제품 리뷰 작성 디자인
+- [ ] 해당 제품 리뷰 수정 디자인
+- [ ] 해당 제품 리뷰 삭제 디자인
 
 #### Backend
 
