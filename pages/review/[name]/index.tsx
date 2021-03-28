@@ -11,6 +11,7 @@ import Header from "components/Header";
 import GenderChart from "components/Chart/Gender";
 import AgeChart from "components/Chart/Age";
 import SpiderChart from "components/Chart/Spider";
+import SecondhandChart from "components/Chart/Secondhand";
 
 // const GenderChart = dynamic(() => import("components/Chart/Gender"), {
 //   ssr: false,
@@ -39,7 +40,7 @@ const Section = styled.section`
   }
 
   @media (max-width: 480px) {
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(1, minmax(200px, 1fr));
   }
 
   &::-webkit-scrollbar {
@@ -71,7 +72,7 @@ const Index: NextPage<Props> = ({ reviews, name }) => {
         <Product />
         <Rating data={reviews} />
         <AvgPrice />
-        <AvgPrice />
+        <SecondhandChart />
         <SpiderChart data={reviews} />
 
         <GenderChart data={reviews} />
