@@ -1,6 +1,9 @@
-# Reviewmo
+# Reviewmoa
 
 > 리뷰모아 - 상품에 대한 통합적 리뷰를 제공하는 웹 애플리케이션
+
+![products](https://github.com/zhsks528/Reviewmoa/blob/master/resources/Products.PNG)
+![main](https://github.com/zhsks528/Reviewmoa/blob/master/resources/main.PNG)
 
 ### 개발 필요성
 
@@ -43,8 +46,8 @@ Backend : Node.js, Express, MongoDB
 - [x] 만족도별 기능 구현 (시각화 : 다각형차트)
 - [ ] 만족도에 따른 키워드 기능 구현 (시각화 : 막대차트)
 - [x] 상품의 총평가 기능 구현 (시각화 : 별점)
-- [ ] 현재 제품의 가격 구현 (시각화 : 숫자)
-- [ ] 현재 제품의 중고 변동 가격 구현 (시각화 : 숫자 or 그래프차트)
+- [X] 현재 제품의 가격 구현 (시각화 : 숫자)
+- [X] 현재 제품의 중고 변동 가격 구현 (시각화 : 라인차트)
 - [ ] 해당 제품 이미지 슬라이드 기능 구현
 - [x] 검색 기능 구현
 
