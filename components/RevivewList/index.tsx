@@ -1,20 +1,9 @@
 import React from "react";
-import Link from "next/link";
 import styled from "styled-components";
 import { Avatar } from "@material-ui/core";
 import { formatDate } from "utils/formatDate";
 import ReviewLayout from "components/ReviewLayout";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
-
-const ReviewCard = styled.div`
-  display: flex;
-  padding: 10px;
-  cursor: pointer;
-
-  &:hover {
-    background: rgba(13, 230, 255, 0.15);
-  }
-`;
 
 const ReviewGrid = styled.div`
   height: calc(100% - 50px);
@@ -69,6 +58,7 @@ const EtcContainer = styled.div`
 const Etc = styled.div`
   margin: 0px 10px 10px 0px;
 `;
+
 const CardRight = styled.div`
   flex: 1 1 auto;
 `;
@@ -158,10 +148,6 @@ const CounterBtn = ({ survey }) => {
 
 const ReviewItem = ({ review, name }) => {
   return (
-    // <Link
-    //   key={review._id}
-    //   href={`/review/${name}/${encodeURIComponent(review._id)}`}
-    // >
     <CardContainer>
       <CardLeft>
         <UserProfile>

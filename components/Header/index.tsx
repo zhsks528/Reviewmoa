@@ -2,7 +2,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import Search from "components/Search";
 
-const Wrapper = styled.div`
+const Wrapper = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -26,6 +26,7 @@ const Title = styled.div`
     color: #0dfff7;
   }
 `;
+
 const Header = () => {
   return (
     <Wrapper>
