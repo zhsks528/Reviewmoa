@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ReviewLayout from "components/ReviewLayout";
 import { faBullseye } from "@fortawesome/free-solid-svg-icons";
+import CustomTooltip from "components/CustomTooltip";
 import {
   Radar,
   RadarChart,
@@ -10,7 +11,6 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import CustomTooltip from "components/CustomTooltip";
 
 const Body = styled.div`
   display: flex;
@@ -98,7 +98,7 @@ const SpiderChart: React.FC<Props> = ({ data }) => {
             />
             <Tooltip
               isAnimationActive={false}
-              content={<CustomTooltip title="제품 분석" />}
+              content={<CustomTooltip active payload label title="제품 분석" />}
             />
           </RadarChart>
         </ResponsiveContainer>

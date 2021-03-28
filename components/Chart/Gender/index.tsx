@@ -98,7 +98,10 @@ const GenderChart: React.FC<Props> = ({ data }) => {
                 />
               ))}
             </Pie>
-            <Tooltip isAnimationActive={true} />
+            <Tooltip
+              isAnimationActive={true}
+              content={<CustomTooltip active payload label title="성별" />}
+            />
             <Legend
               layout="horizontal"
               verticalAlign="bottom"

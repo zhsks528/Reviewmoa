@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import ReviewLayout from "components/ReviewLayout";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
+import CustomTooltip from "components/CustomTooltip";
 import {
   BarChart,
   Bar,
@@ -19,44 +20,6 @@ const Body = styled.div`
   justify-content: center;
   margin-top: 2px;
 `;
-
-const Content = styled.div`
-  width: 100%;
-  height: 84px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-size: 36px;
-  color: #92abcf;
-`;
-
-const TooltipCustom = styled.div`
-  background: black;
-  border-radius: 5px;
-  padding: 10px;
-  font-size: 14px;
-  opacity: 0.75;
-  color: white;
-`;
-
-const TooltipTitle = styled.div`
-  font-weight: bold;
-`;
-
-const CustomTooltip = ({ active, payload, label }) => {
-  if (active) {
-    return (
-      <TooltipCustom>
-        <TooltipTitle>제품 구입자 수</TooltipTitle>
-        <span>{label} : </span>
-        {payload ? <span>{` ${payload[0].value}`}</span> : <span>0</span>}
-      </TooltipCustom>
-    );
-  }
-
-  return null;
-};
 
 type reviewProps = {
   age: number;
@@ -141,7 +104,9 @@ const AgeChart: React.FC<Props> = ({ ages }) => {
                 opacity: 0.15,
               }}
               filterNull={false}
-              content={<CustomTooltip />}
+              content={
+                <CustomTooltip active payload label title="제품 구입자 수" />
+              }
               isAnimationActive={true}
             />
             <Legend />
