@@ -3,7 +3,6 @@ import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import axios, { AxiosResponse } from "axios";
 import ReviewList from "components/RevivewList";
 import ReviewCount from "components/ReviewCount";
-// import dynamic from "next/dynamic";
 import AvgPrice from "components/AvgPrice";
 import Rating from "components/Chart/Rating";
 import Product from "components/Product";
@@ -12,18 +11,6 @@ import GenderChart from "components/Chart/Gender";
 import AgeChart from "components/Chart/Age";
 import SpiderChart from "components/Chart/Spider";
 import SecondhandChart from "components/Chart/Secondhand";
-
-// const GenderChart = dynamic(() => import("components/Chart/Gender"), {
-//   ssr: false,
-// });
-
-// const AgeChart = dynamic(() => import("components/Chart/Age"), {
-//   ssr: false,
-// });
-
-// const SpiderChart = dynamic(() => import("components/SpiderChart"), {
-//   ssr: false,
-// });
 
 const Section = styled.section`
   height: 100%;
@@ -70,14 +57,13 @@ const Index: NextPage<Props> = ({ reviews, name }) => {
       <Header />
       <Section>
         <Product />
-        <Rating data={reviews} />
         <AvgPrice />
-        <SecondhandChart />
+        <Rating data={reviews} />
+        <ReviewCount />
         <SpiderChart data={reviews} />
-
         <GenderChart data={reviews} />
         <AgeChart ages={reviews} />
-        <ReviewCount />
+        <SecondhandChart />
         <ReviewList data={reviews} name={name} />
       </Section>
     </>
