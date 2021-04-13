@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ReviewLayout from "components/ReviewLayout";
-import { faVenusMars } from "@fortawesome/free-solid-svg-icons";
+import CustomTooltip from "components/CustomTooltip";
 import {
   PieChart,
   Pie,
@@ -9,8 +9,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-
-import CustomTooltip from "components/CustomTooltip";
+import { faVenusMars } from "@fortawesome/free-solid-svg-icons";
 
 const Body = styled.div`
   display: flex;
@@ -21,7 +20,6 @@ const Body = styled.div`
 
 const Text = styled.text`
   font-weight: bold;
-  color: "#1d2636";
 `;
 
 interface Props {

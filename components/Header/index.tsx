@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Search from "components/Search";
+import * as colors from "constants/colors";
 
 const Wrapper = styled.header`
   display: flex;
@@ -19,7 +20,7 @@ const Wrapper = styled.header`
 
 const Title = styled.div`
   font-size: 30px;
-  color: rgb(17, 236, 229);
+  color: ${colors.MAIN_COLOR};
   cursor: pointer;
 
   &:hover {

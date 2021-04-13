@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Avatar } from "@material-ui/core";
-import { formatDate } from "utils/formatDate";
 import ReviewLayout from "components/ReviewLayout";
+import { formatDate } from "utils/formatDate";
+import { Avatar } from "@material-ui/core";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
+import * as colors from "constants/colors";
 
 const ReviewGrid = styled.div`
   height: calc(100% - 50px);
@@ -43,8 +44,8 @@ const User = styled.div`
 `;
 
 const Day = styled.div`
-  font-size: 10px;
-  color: rgb(131, 144, 160);
+  font-size: 12px;
+  color: ${colors.SUB_COLOR};
   margin-bottom: 5px;
 `;
 
@@ -52,7 +53,7 @@ const EtcContainer = styled.div`
   display: flex;
   font-size: 12px;
   font-weight: bold;
-  color: #92abcf;
+  color: ${colors.SUB_COLOR};
 `;
 
 const Etc = styled.div`
@@ -70,7 +71,7 @@ const ReviewTitle = styled.div`
 `;
 
 const ReviewContent = styled.div`
-  color: #92abcf;
+  color: ${colors.SUB_COLOR};
   white-space: pre-wrap;
   display: -webkit-box;
   -webkit-line-clamp: 4;
@@ -109,7 +110,7 @@ const SurveyBox = styled.div`
   padding: 3px 8px;
   margin-right: 10px;
   font-size: 13px;
-  color: rgb(17, 236, 229);
+  color: ${colors.MAIN_COLOR};
 `;
 
 const ReviewContainer = styled.div`

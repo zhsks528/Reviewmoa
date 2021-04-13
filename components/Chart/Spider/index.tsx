@@ -11,6 +11,7 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import * as colors from "constants/colors";
 
 const Body = styled.div`
   display: flex;
@@ -82,7 +83,7 @@ const SpiderChart: React.FC<Props> = ({ data }) => {
             <PolarAngleAxis
               dataKey="name"
               tick={{
-                fill: "#92abcf",
+                fill: `${colors.SUB_COLOR}`,
                 fontWeight: "bold",
                 fontSize: 15,
               }}
@@ -91,8 +92,8 @@ const SpiderChart: React.FC<Props> = ({ data }) => {
             <Radar
               name="점수"
               dataKey="average"
-              stroke="#11ece5"
-              fill="#11ece5"
+              stroke={colors.MAIN_COLOR}
+              fill={colors.MAIN_COLOR}
               fillOpacity={0.5}
               isAnimationActive={true}
             />

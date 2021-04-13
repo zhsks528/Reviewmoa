@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import Header from "components/Header";
 import { useRouter } from "next/router";
+import * as colors from "constants/colors";
 
 const Section = styled.section`
   height: 100%;
@@ -44,7 +45,7 @@ const ProductCardWrapper = styled.div`
 
 const ProductCard = styled.div`
   width: 100%;
-  background: rgb(11, 18, 30);
+  background: ${colors.CONTAINER_BACKGROUND};
   border: 1px solid rgb(33, 50, 78);
   padding: 16px;
   border-radius: 4px;
@@ -92,7 +93,7 @@ const ProductCardRating = styled.div`
 const RatingScore = styled.span`
   font-size: 45px;
   line-height: 44px;
-  color: rgb(17, 236, 229);
+  color: ${colors.MAIN_COLOR};
 `;
 
 const RatingUser = styled.div`
@@ -107,7 +108,7 @@ const SubInfo = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  color: #c6d3e7;
+  color: ${colors.SUB_COLOR};
   overflow: hidden;
 
   @media (max-width: 768px) {
@@ -120,6 +121,7 @@ interface Props {
 }
 
 const ProductItem = ({ product }) => {
+  console.log(product);
   return (
     <article>
       <ProductCardWrapper>
@@ -132,10 +134,7 @@ const ProductItem = ({ product }) => {
                 </div>
                 <ProductCardName>
                   <h3>{product.name}</h3>
-                  <SubInfo>
-                    Lorem Ipsum is simply dummy text of the printing and
-                    typesetting industry.
-                  </SubInfo>
+                  <SubInfo>{product.info}</SubInfo>
                 </ProductCardName>
                 <ProductCardRating>
                   <div>

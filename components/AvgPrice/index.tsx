@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Title from "components/ReviewLayout";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
+import * as colors from "constants/colors";
 
 const Body = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ const Content = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
-  color: #92abcf;
+  color: ${colors.SUB_COLOR};
 `;
 
 const OutputContainer = styled.div`
@@ -33,7 +34,7 @@ const PriceContainer = styled.div`
   display: flex;
   margin-bottom: 20px;
   align-items: center;
-  color: ${(props) => (props.color ? "mediumseagreen" : "red")};
+  color: ${(props) => (props.color ? colors.UP_COLOR : colors.DOWN_COLOR)};
   font-weight: bold;
 `;
 
@@ -59,13 +60,13 @@ const TriangleUp = styled.div`
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 16px solid mediumseagreen;
+  border-bottom: 16px solid ${colors.UP_COLOR};
   margin-right: 10px;
 `;
 
 const TriangleDown = styled(TriangleUp)`
   border-bottom: 0;
-  border-top: 16px solid red;
+  border-top: 16px solid ${colors.DOWN_COLOR};
 `;
 
 interface Props {}

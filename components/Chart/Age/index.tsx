@@ -13,6 +13,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
+import * as colors from "constants/colors";
 
 const Body = styled.div`
   display: flex;
@@ -20,15 +21,6 @@ const Body = styled.div`
   justify-content: center;
   margin-top: 2px;
 `;
-
-type reviewProps = {
-  age: number;
-};
-
-type AgeType = {
-  id: string;
-  reviewState: reviewProps;
-};
 
 interface Props {
   ages: any[];
@@ -89,13 +81,21 @@ const AgeChart: React.FC<Props> = ({ ages }) => {
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="3 3" stroke="#92ABCF" />
+            <CartesianGrid strokeDasharray="6 6" stroke={colors.SUB_COLOR} />
             <XAxis
               dataKey="name"
-              tick={{ fill: "#92ABCF", fontWeight: "bold", fontSize: 15 }}
+              tick={{
+                fill: `${colors.SUB_COLOR}`,
+                fontWeight: "bold",
+                fontSize: 15,
+              }}
             />
             <YAxis
-              tick={{ fill: "#92ABCF", fontWeight: "bold", fontSize: 15 }}
+              tick={{
+                fill: `${colors.SUB_COLOR}`,
+                fontWeight: "bold",
+                fontSize: 15,
+              }}
             />
             <Tooltip
               cursor={{
@@ -112,7 +112,7 @@ const AgeChart: React.FC<Props> = ({ ages }) => {
             <Legend />
             <Bar
               dataKey="나이"
-              fill="#11ECE5"
+              fill={colors.MAIN_COLOR}
               legendType="circle"
               barSize={40}
               isAnimationActive={true}

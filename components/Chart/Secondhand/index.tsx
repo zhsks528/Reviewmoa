@@ -10,41 +10,42 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import * as colors from "constants/colors";
 
 const data = [
   {
     name: "Page A",
-    price: 4000,
+    price: 123333,
     amt: 2400,
   },
   {
     name: "Page B",
-    price: 3000,
+    price: 845522,
     amt: 2210,
   },
   {
     name: "Page C",
-    price: 2000,
+    price: 555855,
     amt: 2290,
   },
   {
     name: "Page D",
-    price: 2780,
+    price: 1005400,
     amt: 2000,
   },
   {
     name: "Page E",
-    price: 1890,
+    price: 955478,
     amt: 2181,
   },
   {
     name: "Page F",
-    price: 3500,
+    price: 856400,
     amt: 2500,
   },
   {
     name: "Page G",
-    price: 3490,
+    price: 856400,
     amt: 2100,
   },
 ];
@@ -54,7 +55,7 @@ const PriceContainer = styled.div`
   margin-left: 10px;
   margin-bottom: 20px;
   align-items: center;
-  color: ${(props) => (props.color ? "mediumseagreen" : "red")};
+  color: ${(props) => (props.color ? colors.UP_COLOR : colors.DOWN_COLOR)};
   font-weight: bold;
 `;
 
@@ -80,13 +81,13 @@ const TriangleUp = styled.div`
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 16px solid mediumseagreen;
+  border-bottom: 16px solid ${colors.UP_COLOR};
   margin-right: 10px;
 `;
 
 const TriangleDown = styled(TriangleUp)`
   border-bottom: 0;
-  border-top: 16px solid red;
+  border-top: 16px solid ${colors.DOWN_COLOR};
 `;
 
 const Secondhand = () => {
@@ -102,38 +103,42 @@ const Secondhand = () => {
         {prevItem.price <= lastItem.price ? <TriangleUp /> : <TriangleDown />}
         <div>{figure.toFixed(2)}%</div>
       </PriceContainer>
-      <div style={{ width: "100%", height: 150 }}>
-        <ResponsiveContainer width="99%" height={150}>
-          <AreaChart
-            data={data}
-            margin={{
-              top: 10,
-              right: 30,
-              left: 0,
-              bottom: 0,
+      <ResponsiveContainer width="99%" height={200}>
+        <AreaChart
+          data={data}
+          margin={{
+            top: 10,
+            right: 30,
+            left: 0,
+            bottom: 0,
+          }}
+        >
+          <CartesianGrid strokeDasharray="6" vertical={false} />
+          <YAxis
+            tick={{
+              fill: `${colors.SUB_COLOR}`,
+              fontWeight: "bold",
+              fontSize: 15,
             }}
-          >
-            <CartesianGrid strokeDasharray="3" vertical={false} />
-            <YAxis />
-            <Tooltip
-              cursor={{
-                stroke: "#0DE6ff",
-                fill: "#0DE6ff",
-                opacity: 0.15,
-              }}
-              filterNull={false}
-              content={<CustomTooltip active payload label title="중고가격" />}
-              isAnimationActive={true}
-            />
-            <Area
-              type="monotone"
-              dataKey="price"
-              stroke="#11ECE5"
-              fill="#11ECE5"
-            />
-          </AreaChart>
-        </ResponsiveContainer>
-      </div>
+          />
+          <Tooltip
+            cursor={{
+              stroke: "#0DE6ff",
+              fill: "#0DE6ff",
+              opacity: 0.15,
+            }}
+            filterNull={false}
+            content={<CustomTooltip active payload label title="중고가격" />}
+            isAnimationActive={true}
+          />
+          <Area
+            type="monotone"
+            dataKey="price"
+            stroke={colors.MAIN_COLOR}
+            fill={colors.MAIN_COLOR}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
     </ReviewLayout>
   );
 };
