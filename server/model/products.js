@@ -4,6 +4,7 @@ const Schema = mongoose.Schema;
 const productSchema = new Schema(
   {
     name: { type: String, required: true },
+    info: { type: String, required: true },
     stars: { type: Number },
     reviews: [{ type: Schema.Types.ObjectId, ref: "review" }],
   },

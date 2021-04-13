@@ -49,6 +49,7 @@ exports.productPost = (req, res) => {
   // 제품 모델 생성
   const productModel = new Product({
     name: req.body.name,
+    info: req.body.info,
     stars: req.body.stars,
   });
 
@@ -71,20 +72,21 @@ exports.productPost = (req, res) => {
 
 // 제품 삭제
 exports.prodcutDelete = (req, res) => {
-  Product.findByIdAndDelete(req.params.name, (err, data) => {
-    console.log(req.params);
+  let productId = req.body.id;
+
+  Product.findByIdAndDelete(productId, (err, data) => {
     if (err) {
       return res.status(500).send("제품을 삭제하지 못했습니다.");
+    } else {
+      res.status(200).send(`"제품 제목 : ${data.name}가 삭제되었습니다`);
     }
-
-    res.status(200).send(`"제품 제목 : ${data.name}가 삭제되었습니다`);
   });
 };
 
 // 제품 수정
 exports.productUpdate = (req, res) => {
   Product.findByIdAndUpdate(
-    req.params.name,
+    req.body.id,
     req.body,
     { new: true },
 
