@@ -10,42 +10,43 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
+import { formatData } from "utils/format";
 import * as colors from "constants/colors";
 
 const data = [
   {
     name: "Page A",
-    price: 123333,
+    value: 123333,
     amt: 2400,
   },
   {
     name: "Page B",
-    price: 845522,
+    value: 845522,
     amt: 2210,
   },
   {
     name: "Page C",
-    price: 555855,
+    value: 555855,
     amt: 2290,
   },
   {
     name: "Page D",
-    price: 1005400,
+    value: 1005400,
     amt: 2000,
   },
   {
     name: "Page E",
-    price: 955478,
+    value: 955478,
     amt: 2181,
   },
   {
     name: "Page F",
-    price: 856400,
+    value: 856400,
     amt: 2500,
   },
   {
     name: "Page G",
-    price: 856400,
+    value: 756400,
     amt: 2100,
   },
 ];
@@ -93,14 +94,14 @@ const TriangleDown = styled(TriangleUp)`
 const Secondhand = () => {
   const prevItem = data[data.length - 2];
   const lastItem = data[data.length - 1];
-  const figure = (lastItem.price - prevItem.price) * 0.01;
+  const figure = (lastItem.value - prevItem.value) * 0.01;
   const isBoolean = figure > 0 ? true : false;
 
   return (
     <ReviewLayout title="중고가격" icon={faCoins}>
       <PriceContainer color={isBoolean}>
-        <Price>{lastItem.price.toLocaleString("ko-KR")} 원</Price>
-        {prevItem.price <= lastItem.price ? <TriangleUp /> : <TriangleDown />}
+        <Price>{lastItem.value.toLocaleString("ko-kr")} 원</Price>
+        {prevItem.value <= lastItem.value ? <TriangleUp /> : <TriangleDown />}
         <div>{figure.toFixed(2)}%</div>
       </PriceContainer>
       <ResponsiveContainer width="99%" height={200}>
@@ -120,6 +121,7 @@ const Secondhand = () => {
               fontWeight: "bold",
               fontSize: 15,
             }}
+            tickFormatter={formatData}
           />
           <Tooltip
             cursor={{
@@ -133,7 +135,7 @@ const Secondhand = () => {
           />
           <Area
             type="monotone"
-            dataKey="price"
+            dataKey="value"
             stroke={colors.MAIN_COLOR}
             fill={colors.MAIN_COLOR}
           />

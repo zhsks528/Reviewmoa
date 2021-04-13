@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ReviewLayout from "components/ReviewLayout";
-import { formatDate } from "utils/formatDate";
+import { formatDate } from "utils/format";
 import { Avatar } from "@material-ui/core";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
 import * as colors from "constants/colors";

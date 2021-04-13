@@ -22,11 +22,13 @@ interface Props {
 
 const CustomTooltip: React.FC<Props> = ({ title, active, payload, label }) => {
   if (active && payload) {
+    const data = payload[0].value.toLocaleString("ko-KR");
+
     return (
       <TooltipCustom>
         <TooltipTitle>{title}</TooltipTitle>
         <span>{label} : </span>
-        {payload ? <span>{` ${payload[0].value}`}</span> : <span>0</span>}
+        {payload ? <span>{data}</span> : <span>0</span>}
       </TooltipCustom>
     );
   }
