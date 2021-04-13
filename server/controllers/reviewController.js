@@ -32,7 +32,6 @@ exports.reviewGet = (req, res) => {
 exports.reviewPost = async (req, res) => {
   const productName = req.params.name;
 
-  console.log(req.body);
   const reviewModel = new Review({
     reviewState: req.body.reviewState,
     surveyState: req.body.surveyState,
@@ -63,15 +62,12 @@ exports.reviewDetail = (req, res) => {
     if (!data) {
       res.status(404).json({ error: "데이터를 찾지 못했습니다." });
     }
-
-    console.log(data);
     res.status(200).json(data);
   });
 };
 
 exports.reviewDelete = (req, res) => {
   Review.findByIdAndDelete(req.params.id, (err, data) => {
-    console.log(data);
     if (err) {
       return res.status(500).send("리뷰를 삭제하지 못했습니다.");
     }
@@ -96,24 +92,4 @@ exports.reviewUpdate = (req, res) => {
       res.status(200).send(data);
     }
   );
-};
-
-exports.reviewGender = (req, res) => {
-  Review.find({}, { "reviewState.gender": 1 }, (err, data) => {
-    if (err) {
-      res.status(500).json("error");
-    } else {
-      res.status(200).json(data);
-    }
-  });
-};
-
-exports.reviewAge = (req, res) => {
-  Review.find({}, { "reviewState.age": 1 }, (err, data) => {
-    if (err) {
-      res.status(500).json("error");
-    } else {
-      res.status(200).json(data);
-    }
-  });
 };

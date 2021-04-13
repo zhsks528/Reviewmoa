@@ -23,10 +23,4 @@ router
   .put(review.reviewUpdate)
   .delete(review.reviewDelete);
 
-// Review 성별 데이터 조회
-// router.get("/review/gender", review.reviewGender);
-
-// Review 연령별 데이터 조회
-// router.get("/review/age", review.reviewAge);
-
 module.exports = router;
