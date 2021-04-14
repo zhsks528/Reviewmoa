@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ReviewLayout from "components/ReviewLayout";
 import { formatDate } from "utils/format";
@@ -15,7 +15,7 @@ const ReviewGrid = styled.div`
 const CardContainer = styled.article`
   display: flex;
   width: 100%;
-  margin-bottom: 20px;
+  padding: 10px;
 
   &:hover {
     background-color: rgb(17, 28, 46);
@@ -70,17 +70,13 @@ const ReviewTitle = styled.div`
   margin-bottom: 8px;
 `;
 
-const ReviewContent = styled.div`
+const ReviewContent = styled.div<MoreProps>`
   color: ${colors.SUB_COLOR};
   white-space: pre-wrap;
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  ${(props) => (props.more ? "" : "-webkit-line-clamp: 2;")}
   -webkit-box-orient: vertical;
   overflow: hidden;
-
-  @media (max-width: 768px) {
-    -webkit-line-clamp: 3;
-  } ;
 `;
 
 const Wrapper = styled.section`
@@ -132,22 +128,75 @@ const ReviewContainer = styled.div`
     background-color: #273854;
   }
 `;
+
+const MoreText = styled.span<MoreProps>`
+  float: right;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 15px;
+  position: relative;
+
+  &::after {
+    content: "";
+    width: 5px;
+    height: 5px;
+    border-top: 3px solid white;
+    border-right: 3px solid white;
+    display: inline-block;
+    transform: ${(props) =>
+      props.more ? "rotate(-45deg);" : "rotate(135deg);"}
+    position: absolute;
+    top: ${(props) => (props.more ? "55%;" : "30%;")}
+    right: -15px;
+  }
+`;
+
 interface Props {
   data: any;
   name: string;
 }
 
-const CounterBtn = ({ survey }) => {
+interface ItemProps {
+  review: any;
+  name: string;
+}
+
+interface MoreProps {
+  more: boolean;
+}
+
+interface Survey {
+  tech: number;
+  price: number;
+  brand: number;
+}
+interface ScoreProps {
+  survey: Survey;
+}
+
+const CounterBtn: React.FC<ScoreProps> = ({ survey }) => {
+  const { tech, price, brand } = survey;
+
   return (
     <SurveyContainer>
-      <SurveyBox>기술 {survey.tech}</SurveyBox>
-      <SurveyBox>가격 {survey.price}</SurveyBox>
-      <SurveyBox>브랜드 {survey.brand}</SurveyBox>
+      <SurveyBox>기술 {tech}</SurveyBox>
+      <SurveyBox>가격 {price}</SurveyBox>
+      <SurveyBox>브랜드 {brand}</SurveyBox>
     </SurveyContainer>
   );
 };
 
-const ReviewItem = ({ review, name }) => {
+const ReviewItem: React.FC<ItemProps> = ({ review, name }) => {
+  const [more, setMore] = useState(false);
+
+  const handleMoreText = () => {
+    setMore(!more);
+  };
+
+  const contentLen = review.reviewState.content.length;
+  const text = more ? "접기 " : "펼쳐보기";
+
   return (
     <CardContainer>
       <CardLeft>
@@ -166,10 +215,14 @@ const ReviewItem = ({ review, name }) => {
       <CardRight>
         <ReviewTitle>{review.reviewState.title}</ReviewTitle>
         <CounterBtn survey={review.surveyState} />
-        <ReviewContent>{review.reviewState.content}</ReviewContent>
+        <ReviewContent more={more}>{review.reviewState.content}</ReviewContent>
+        {contentLen && contentLen >= 100 && (
+          <MoreText onClick={handleMoreText} more={more}>
+            {text}
+          </MoreText>
+        )}
       </CardRight>
     </CardContainer>
-    // </Link>
   );
 };
 
