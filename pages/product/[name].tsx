@@ -1,11 +1,13 @@
+import { useState } from "react";
 import axios, { AxiosResponse } from "axios";
 import styled from "styled-components";
 import { GetStaticPaths, GetStaticProps } from "next";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import Header from "components/Header";
+import Modal from "components/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import Header from "components/Header";
-import { useRouter } from "next/router";
 import * as colors from "constants/colors";
 
 const Section = styled.section`
@@ -49,6 +51,10 @@ const ProductCard = styled.div`
   border: 1px solid rgb(33, 50, 78);
   padding: 16px;
   border-radius: 4px;
+`;
+
+const Card = styled(ProductCard)`
+  margin-bottom: 15px;
 `;
 
 const ProductCardContainer = styled.div`
@@ -121,7 +127,6 @@ interface Props {
 }
 
 const ProductItem = ({ product }) => {
-  console.log(product);
   return (
     <article>
       <ProductCardWrapper>
@@ -159,6 +164,16 @@ const Products: React.FC<Props> = ({ products }) => {
   const productName = router.query.name;
   const count = products ? products.length : 0;
 
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const openModal = () => {
+    setModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+  };
+
   return (
     <>
       <Header />
@@ -166,6 +181,10 @@ const Products: React.FC<Props> = ({ products }) => {
         <SearchQuery>
           검색 키워드 : {productName} ({count})
         </SearchQuery>
+        <Card>
+          <span>검색 결과가 없다면? 직접 작성해보기 </span>
+          <button onClick={openModal}>작성하기</button>
+        </Card>
         {products && products.length !== 0 ? (
           products.map((product) => (
             <ProductItem product={product} key={product.id} />
@@ -174,6 +193,7 @@ const Products: React.FC<Props> = ({ products }) => {
           <div>검색결과가 없습니다. 다시 검색해주세요.</div>
         )}
       </Section>
+      {modalOpen && <Modal close={closeModal} />}
     </>
   );
 };
