@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { formatData } from "utils/format";
-import * as colors from "constants/colors";
+import palatte from "styles/palattes";
 
 const data = [
   {
@@ -56,7 +56,7 @@ const PriceContainer = styled.div`
   margin-left: 10px;
   margin-bottom: 20px;
   align-items: center;
-  color: ${(props) => (props.color ? colors.UP_COLOR : colors.DOWN_COLOR)};
+  color: ${(props) => (props.color ? palatte.UP_COLOR : palatte.DOWN_COLOR)};
   font-weight: bold;
 `;
 
@@ -82,13 +82,13 @@ const TriangleUp = styled.div`
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 16px solid ${colors.UP_COLOR};
+  border-bottom: 16px solid ${palatte.UP_COLOR};
   margin-right: 10px;
 `;
 
 const TriangleDown = styled(TriangleUp)`
   border-bottom: 0;
-  border-top: 16px solid ${colors.DOWN_COLOR};
+  border-top: 16px solid ${palatte.DOWN_COLOR};
 `;
 
 const Secondhand = () => {
@@ -117,7 +117,7 @@ const Secondhand = () => {
           <CartesianGrid strokeDasharray="6" vertical={false} />
           <YAxis
             tick={{
-              fill: `${colors.SUB_COLOR}`,
+              fill: `${palatte.SUB_COLOR}`,
               fontWeight: "bold",
               fontSize: 15,
             }}
@@ -136,8 +136,8 @@ const Secondhand = () => {
           <Area
             type="monotone"
             dataKey="value"
-            stroke={colors.MAIN_COLOR}
-            fill={colors.MAIN_COLOR}
+            stroke={palatte.MAIN_COLOR}
+            fill={palatte.MAIN_COLOR}
           />
         </AreaChart>
       </ResponsiveContainer>

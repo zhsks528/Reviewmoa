@@ -4,7 +4,7 @@ import ReviewLayout from "components/ReviewLayout";
 import { formatDate } from "utils/format";
 import { Avatar } from "@material-ui/core";
 import { faUsers } from "@fortawesome/free-solid-svg-icons";
-import * as colors from "constants/colors";
+import palatte from "styles/palattes";
 
 const ReviewGrid = styled.div`
   height: calc(100% - 50px);
@@ -45,7 +45,7 @@ const User = styled.div`
 
 const Day = styled.div`
   font-size: 12px;
-  color: ${colors.SUB_COLOR};
+  color: ${palatte.SUB_COLOR};
   margin-bottom: 5px;
 `;
 
@@ -53,7 +53,7 @@ const EtcContainer = styled.div`
   display: flex;
   font-size: 12px;
   font-weight: bold;
-  color: ${colors.SUB_COLOR};
+  color: ${palatte.SUB_COLOR};
 `;
 
 const Etc = styled.div`
@@ -71,7 +71,7 @@ const ReviewTitle = styled.div`
 `;
 
 const ReviewContent = styled.div<MoreProps>`
-  color: ${colors.SUB_COLOR};
+  color: ${palatte.SUB_COLOR};
   white-space: pre-wrap;
   display: -webkit-box;
   ${(props) => (props.more ? "" : "-webkit-line-clamp: 2;")}
@@ -106,7 +106,7 @@ const SurveyBox = styled.div`
   padding: 3px 8px;
   margin-right: 10px;
   font-size: 13px;
-  color: ${colors.MAIN_COLOR};
+  color: ${palatte.MAIN_COLOR};
 `;
 
 const ReviewContainer = styled.div`

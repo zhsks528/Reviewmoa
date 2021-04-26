@@ -8,7 +8,7 @@ import Header from "components/Header";
 import Modal from "components/Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import * as colors from "constants/colors";
+import palatte from "styles/palattes";
 
 const Section = styled.section`
   height: 100%;
@@ -47,7 +47,7 @@ const ProductCardWrapper = styled.div`
 
 const ProductCard = styled.div`
   width: 100%;
-  background: ${colors.CONTAINER_BACKGROUND};
+  background: ${palatte.CONTAINER_BACKGROUND};
   border: 1px solid rgb(33, 50, 78);
   padding: 16px;
   border-radius: 4px;
@@ -99,7 +99,7 @@ const ProductCardRating = styled.div`
 const RatingScore = styled.span`
   font-size: 45px;
   line-height: 44px;
-  color: ${colors.MAIN_COLOR};
+  color: ${palatte.MAIN_COLOR};
 `;
 
 const RatingUser = styled.div`
@@ -114,7 +114,7 @@ const SubInfo = styled.div`
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  color: ${colors.SUB_COLOR};
+  color: ${palatte.SUB_COLOR};
   overflow: hidden;
 
   @media (max-width: 768px) {

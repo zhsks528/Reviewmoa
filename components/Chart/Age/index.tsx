@@ -10,10 +10,9 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from "recharts";
-import * as colors from "constants/colors";
+import palatte from "styles/palattes";
 
 const Body = styled.div`
   display: flex;
@@ -81,18 +80,18 @@ const AgeChart: React.FC<Props> = ({ ages }) => {
               bottom: 5,
             }}
           >
-            <CartesianGrid strokeDasharray="6 6" stroke={colors.SUB_COLOR} />
+            <CartesianGrid strokeDasharray="6 6" stroke={palatte.SUB_COLOR} />
             <XAxis
               dataKey="name"
               tick={{
-                fill: `${colors.SUB_COLOR}`,
+                fill: `${palatte.SUB_COLOR}`,
                 fontWeight: "bold",
                 fontSize: 15,
               }}
             />
             <YAxis
               tick={{
-                fill: `${colors.SUB_COLOR}`,
+                fill: `${palatte.SUB_COLOR}`,
                 fontWeight: "bold",
                 fontSize: 15,
               }}
@@ -109,10 +108,9 @@ const AgeChart: React.FC<Props> = ({ ages }) => {
               }
               isAnimationActive={true}
             />
-            <Legend />
             <Bar
               dataKey="나이"
-              fill={colors.MAIN_COLOR}
+              fill={palatte.MAIN_COLOR}
               legendType="circle"
               barSize={40}
               isAnimationActive={true}

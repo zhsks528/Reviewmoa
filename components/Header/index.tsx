@@ -1,7 +1,7 @@
 import Link from "next/link";
 import styled from "styled-components";
 import Search from "components/Search";
-import * as colors from "constants/colors";
+import palatte from "styles/palattes";
 
 const Wrapper = styled.header`
   display: flex;
@@ -20,7 +20,7 @@ const Wrapper = styled.header`
 
 const Title = styled.div`
   font-size: 30px;
-  color: ${colors.MAIN_COLOR};
+  color: ${palatte.MAIN_COLOR};
   cursor: pointer;
 
   &:hover {

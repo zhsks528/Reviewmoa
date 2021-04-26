@@ -2,7 +2,7 @@ import Head from "next/head";
 import { Fragment, useEffect } from "react";
 import Pusher from "pusher-js";
 import type { AppProps } from "next/app";
-import GlobalStyle from "./globalStyles";
+import GlobalStyle from "styles/globalStyles";
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {

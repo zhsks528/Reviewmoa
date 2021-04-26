@@ -1,13 +1,13 @@
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import * as colors from "constants/colors";
+import palatte from "styles/palattes";
 
 const CardContainer = styled.section`
   height: 100%;
   padding: 10px;
   min-width: 250px;
   position: relative;
-  background: ${colors.CONTAINER_BACKGROUND};
+  background: ${palatte.CONTAINER_BACKGROUND};
   border: 1px solid rgb(33, 50, 78);
   border-radius: 4px;
 `;
@@ -26,13 +26,13 @@ const IconContainer = styled.div`
   display: flex;
   place-content: center;
   align-items: center;
-  color: ${colors.MAIN_COLOR};
+  color: ${palatte.MAIN_COLOR};
 `;
 
 const Title = styled.h2`
   margin-left: 7px;
   font-size: 15px;
-  color: ${colors.MAIN_COLOR};
+  color: ${palatte.MAIN_COLOR};
   line-height: 1em;
 `;
 
