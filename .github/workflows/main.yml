@@ -6,9 +6,9 @@ name: Reviewmoa CI
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
   issue_comment:
     types: [created]
 
@@ -27,7 +27,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
+        run: "test입니다."
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
