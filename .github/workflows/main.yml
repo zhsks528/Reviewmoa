@@ -38,3 +38,21 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Reaction
+        run: |
+          echo "PR_NUMBER=${{ github.event.issue.number }}" >> $GITHUB_ENV
+
+          curl -v \
+            --url https://api.github.com/repos/${{ github.repository }}/issues/comments/${{ github.event.comment.id }}/reactions \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Accept: application/vnd.github.squirrel-girl-preview+json" \
+            -H "Content-Type: application/json" \
+            -f --request POST \
+            -d "{\"content\":\"+1\"}"
+          curl -v \
+            --url https://api.github.com/repos/${{ github.repository }}/issues/${{ env.PR_NUMBER }}/comments \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -f --request POST \
+            -d "{\"body\":\"@${{ github.event.sender.login}} I got it! :rocket: \"}"
