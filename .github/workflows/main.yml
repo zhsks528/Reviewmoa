@@ -43,7 +43,7 @@ jobs:
         id: check-working-tree
         run: |
           DIFF=$(git diff)
-          echo "::set-output name=clean::$([ -z $DIFF ] && echo 'true')"
+          echo "::set-output name=clean::$([ -z git diff ] && echo 'true')"
           
       - name: "fail"
         if: steps.check-working-tree.outputs.clean != 'true'
