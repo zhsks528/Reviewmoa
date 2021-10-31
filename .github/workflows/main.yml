@@ -50,3 +50,9 @@ jobs:
         run: |
           echo steps.check-working-tree.outputs.clean
           node -e 'process.exit(1)'
+          
+      - name: "success"
+        if: steps.check-working-tree.outputs.clean == 'true'
+        run: |
+          echo steps.check-working-tree.outputs.clean
+
