@@ -37,3 +37,17 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+      - name: Check working tree clean
+        id: check-working-tree
+        run: |
+          DIFF=$(git diff)
+          echo "::set-output name=clean::$([ -z $DIFF ] && echo 'true')"
+          $DIFF > diff_test.text
+          
+          while read line; do
+            echo $line
+          done < diff_test.text
+          
+          
+          
