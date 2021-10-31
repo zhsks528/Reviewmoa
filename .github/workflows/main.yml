@@ -44,8 +44,9 @@ jobs:
         run: |
           DIFF=$(git diff)
           echo "::set-output name=clean::$([ -z $DIFF ] && echo 'true')"
-          $DIFF > diff_test.txt
-
-          while read line; do
-            echo $line
-          done < diff_test.txt
+          
+      - name: "fail"
+        if: steps.check-working-tree.outputs.clean != 'true'
+        run: |
+          echo steps.check-working-tree.outputs.clean
+          node -e 'process.exit(1)'
