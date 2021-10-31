@@ -44,8 +44,8 @@ jobs:
         run: |
           DIFF=$(git diff)
           echo "::set-output name=clean::$([ -z $DIFF ] && echo 'true')"
-          $DIFF > diff_test.text
+          $DIFF > diff_test.txt
 
           while read line; do
             echo $line
-          done < diff_test.text
+          done < diff_test.txt
